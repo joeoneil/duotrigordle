@@ -6,6 +6,12 @@ fn main() {
     let words = init_word_list();
 
     const CHECK_COUNT: usize = 1;
+    const THREAD_COUNT: usize = 4;
+
+    rayon::ThreadPoolBuilder::new()
+        .num_threads(THREAD_COUNT)
+        .build_global()
+        .unwrap();
 
     let v_words = words.iter().map(|e| *e).collect::<Vec<_>>();
 
